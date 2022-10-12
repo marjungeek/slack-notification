@@ -2,9 +2,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 const SlackNotify = require('slack-notify');
-const MY_SLACK_WEBHOOK_URL = 'https://containerexch-1qk7618.slack.com/services/B0468T0JMC4';
+const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
-
 
 const slackAction = async () => {
     try{
@@ -21,10 +20,10 @@ const slackAction = async () => {
               'Memory usage': '254mb'
             }
           });
+
+          const payload = JSON.stringify(github.context.payload, undefined, 2)
         
-          await slack.send('Hello!').then(() => {
-            console.log('Done!');
-          });
+          await slack.send('Hello!');
     } catch (error) {
         core.setFailed(error.message);
     }
@@ -33,3 +32,4 @@ const slackAction = async () => {
 
 
 slackAction();
+
