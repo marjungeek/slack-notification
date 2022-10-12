@@ -4,6 +4,9 @@ inputs:
   slack_url:  # id of input
     description: 'Slack URL'
     required: true
+  message:  # id of input
+    description: 'Message to be sent'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
