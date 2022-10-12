@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 const SlackNotify = require('slack-notify');
-const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
 
 try {
@@ -16,7 +16,7 @@ try {
 //   console.log(`The event payload: ${payload}`);
 
   slack.send({
-    channel: '#test-alert',
+    channel: '#testing-alert',
     icon_url: 'http://example.com/my-icon.png',
     text: 'Here is my notification',
     unfurl_links: 1,
