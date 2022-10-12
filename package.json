@@ -1,0 +1,22 @@
+{
+  "name": "marjun",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marjungeek/slack-notification.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marjungeek/slack-notification/issues"
+  },
+  "homepage": "https://github.com/marjungeek/slack-notification#readme",
+  "description": ""
+}
