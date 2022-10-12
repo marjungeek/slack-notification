@@ -15,15 +15,33 @@ try {
 //   const payload = JSON.stringify(github.context.payload, undefined, 2)
 //   console.log(`The event payload: ${payload}`);
 
-  slack.send({
+var statLog = slack.extend({
     channel: '#testing-alert',
-    icon_url: 'http://example.com/my-icon.png',
-    text: 'Here is my notification',
-    unfurl_links: 1,
-    username: 'Jimmy'
+    icon_emoji: ':computer:',
+    username: 'Statistics'
+  });
+  
+  statLog({
+    text: 'Current server statistics',
+    fields: {
+      'CPU usage': '7.51%',
+      'Memory usage': '254mb'
+    }
+  });
+
+  slack.send('Hello!').then(() => {
+    console.log('Done!');
   }).catch((err) => {
     console.error('API error:', err);
   })
+
+//   slack.send({
+//     channel: '#testing-alert',
+//     icon_url: 'http://example.com/my-icon.png',
+//     text: 'Here is my notification',
+//     unfurl_links: 1,
+//     username: 'Jimmy'
+//   });
   
 
 } catch (error) {
