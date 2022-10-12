@@ -7,13 +7,13 @@ const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+//   const nameToGreet = core.getInput('who-to-greet');
+//   console.log(`Hello ${nameToGreet}!`);
+//   const time = (new Date()).toTimeString();
+//   core.setOutput("time", time);
+//   // Get the JSON webhook payload for the event that triggered the workflow
+//   const payload = JSON.stringify(github.context.payload, undefined, 2)
+//   console.log(`The event payload: ${payload}`);
 
   slack.send({
     channel: '#test-alert',
@@ -21,7 +21,10 @@ try {
     text: 'Here is my notification',
     unfurl_links: 1,
     username: 'Jimmy'
-  });
+  }).catch((err) => {
+    console.error('API error:', err);
+  })
+  
 
 } catch (error) {
   core.setFailed(error.message);
