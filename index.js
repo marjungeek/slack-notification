@@ -3,15 +3,19 @@ const github = require('@actions/github');
 const axios = require('axios');
 
 
-const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 
 
 const slackAction = async () => {
     try{
-        const url = 'https://hooks.slack.com/services/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';
-        await axios.post(url, {
-            channel: '#test',
-            text: 'Hello, World!'
+
+
+        const json = JSON.stringify({ channel: "#testing-alerts", text : "hello" });
+        await axios.post(url, json, {
+            headers: {
+                // Overwrite Axios's automatically set Content-Type
+                'Content-Type': 'application/json'
+            }
         });
 
     } catch (error) {
@@ -20,21 +24,7 @@ const slackAction = async () => {
     
 }
 
-// const axios = require('axios');
 
-// const slackToken = 'xoxb-YOUR-TOKEN_HERE';
-
-// run().catch(err => console.log(err));
-
-// async function run() {
-//   const url = 'https://slack.com/api/chat.postMessage';
-//   const res = await axios.post(url, {
-//     channel: '#test',
-//     text: 'Hello, World!'
-//   }, { headers: { authorization: `Bearer ${slackToken}` } });
-
-//   console.log('Done', res.data);
-// }
 
 
 slackAction();
