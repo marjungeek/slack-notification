@@ -1,34 +1,40 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const axios = require('axios');
 
-const SlackNotify = require('slack-notify');
+
 const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
-const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
+
 
 const slackAction = async () => {
     try{
-        var statLog = slack.extend({
-            channel: '#testing-alert',
-            icon_emoji: ':computer:',
-            username: 'Statistics'
-          });
-          
-          statLog({
-            text: 'Current server statistics',
-            fields: {
-              'CPU usage': '7.51%',
-              'Memory usage': '254mb'
-            }
-          });
+        const url = 'https://hooks.slack.com/services/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';
+        await axios.post(url, {
+            channel: '#test',
+            text: 'Hello, World!'
+        });
 
-          const payload = JSON.stringify(github.context.payload, undefined, 2)
-        
-          await slack.send('Hello!');
     } catch (error) {
         core.setFailed(error.message);
     }
     
 }
+
+// const axios = require('axios');
+
+// const slackToken = 'xoxb-YOUR-TOKEN_HERE';
+
+// run().catch(err => console.log(err));
+
+// async function run() {
+//   const url = 'https://slack.com/api/chat.postMessage';
+//   const res = await axios.post(url, {
+//     channel: '#test',
+//     text: 'Hello, World!'
+//   }, { headers: { authorization: `Bearer ${slackToken}` } });
+
+//   console.log('Done', res.data);
+// }
 
 
 slackAction();
