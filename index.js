@@ -15,25 +15,7 @@ try {
 //   const payload = JSON.stringify(github.context.payload, undefined, 2)
 //   console.log(`The event payload: ${payload}`);
 
-var statLog = slack.extend({
-    channel: '#testing-alert',
-    icon_emoji: ':computer:',
-    username: 'Statistics'
-  });
-  
-  statLog({
-    text: 'Current server statistics',
-    fields: {
-      'CPU usage': '7.51%',
-      'Memory usage': '254mb'
-    }
-  });
 
-  slack.send('Hello!').then(() => {
-    console.log('Done!');
-  }).catch((err) => {
-    console.error('API error:', err);
-  })
 
 //   slack.send({
 //     channel: '#testing-alert',
@@ -42,8 +24,36 @@ var statLog = slack.extend({
 //     unfurl_links: 1,
 //     username: 'Jimmy'
 //   });
+
+    slackAction().then(sucess => {
+        console.log(success)
+    }, error => {
+        console.log(error)
+    });
   
 
 } catch (error) {
   core.setFailed(error.message);
+}
+
+
+const slackAction = async () => {
+
+    var statLog = slack.extend({
+        channel: '#testing-alert',
+        icon_emoji: ':computer:',
+        username: 'Statistics'
+      });
+      
+      statLog({
+        text: 'Current server statistics',
+        fields: {
+          'CPU usage': '7.51%',
+          'Memory usage': '254mb'
+        }
+      });
+    
+      await slack.send('Hello!').then(() => {
+        console.log('Done!');
+      });
 }
