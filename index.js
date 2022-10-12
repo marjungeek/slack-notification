@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 const SlackNotify = require('slack-notify');
-const MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+const MY_SLACK_WEBHOOK_URL = 'https://containerexch-1qk7618.slack.com/services/B0468T0JMC4';
 const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
 
 
