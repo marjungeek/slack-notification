@@ -7,24 +7,28 @@ const slack = SlackNotify(MY_SLACK_WEBHOOK_URL);
 
 
 const slackAction = async () => {
-
-    var statLog = slack.extend({
-        channel: '#testing-alert',
-        icon_emoji: ':computer:',
-        username: 'Statistics'
-      });
-      
-      statLog({
-        text: 'Current server statistics',
-        fields: {
-          'CPU usage': '7.51%',
-          'Memory usage': '254mb'
-        }
-      });
+    try{
+        var statLog = slack.extend({
+            channel: '#testing-alert',
+            icon_emoji: ':computer:',
+            username: 'Statistics'
+          });
+          
+          statLog({
+            text: 'Current server statistics',
+            fields: {
+              'CPU usage': '7.51%',
+              'Memory usage': '254mb'
+            }
+          });
+        
+          await slack.send('Hello!').then(() => {
+            console.log('Done!');
+          });
+    } catch (error) {
+        core.setFailed(error.message);
+    }
     
-      await slack.send('Hello!').then(() => {
-        console.log('Done!');
-      });
 }
 
 
