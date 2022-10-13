@@ -7,6 +7,18 @@ inputs:
   message:  # id of input
     description: 'Message to be sent'
     required: true
+  actor:  # id of input
+    description: 'Message to be sent'
+    required: true
+  environment:  # id of input
+    description: 'Environment Release'
+    required: true
+  release:  # id of input
+    description: 'Release & Tag'
+    required: true
+  date:  # id of input
+    description: 'Date of the request'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'

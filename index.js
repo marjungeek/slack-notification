@@ -4,6 +4,10 @@ const axios = require('axios');
 
 const SLACK_URL = core.getInput('slack_url');
 const message = core.getInput('message');
+const actor = core.getInput('actor');
+const environment = core.getInput('environment');
+const release = core.getInput('release');
+const date = core.getInput('date');
 
 const slackAction = async () => {
     
@@ -15,7 +19,7 @@ const slackAction = async () => {
                     type: "header",
                     text: {
                         type: "plain_text",
-                        text: "New request",
+                        text: "New Deployment",
                         emoji: true
                     }
                 },
@@ -24,11 +28,11 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: "*Type:*\nPaid Time Off"
+                            text: `*Environment:*\n${environment}`
                         },
                         {
                             type: "mrkdwn",
-                            text: "*Created by:*\n<example.com|Fred Enriquez>"
+                            text: `*Requested by:*\n${actor}`
                         }
                     ]
                 },
@@ -37,12 +41,16 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: "*When:*\nAug 10 - Aug 13"
+                            text: `*Date:*\n${date}`
+                        },
+                        {
+                            type: "mrkdwn",
+                            text: `*Release/Tag:*\n${release}`
                         }
                     ]
                 }]
         });
-        
+
         await axios.post(SLACK_URL, json, {
             headers: {
                 'Content-Type': 'application/json'
