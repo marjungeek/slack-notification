@@ -15746,6 +15746,8 @@ const axios = __nccwpck_require__(5340);
 const slackAction = async () => {
     
     try{
+        const status = core.getInput('status');
+
         const json = JSON.stringify({ 
             blocks: [
                 {
@@ -15765,7 +15767,7 @@ const slackAction = async () => {
                         },
                         {
                             type: "mrkdwn",
-                            text: `*Status:*\n${core.getInput('status')}`
+                            text: "*Status:*\n " + (status == "success") ? "Sucess :white_check_mark:" : 0
                         },
                         
                     ]
@@ -15788,7 +15790,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Detail:*\n${core.getInput('message')}`
+                            text: `*Detail:*\n <${core.getInput('message')}|View Commit>`
                         }
                     ]
                 }
