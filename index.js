@@ -26,7 +26,7 @@ const slackAction = async () => {
                         },
                         {
                             type: "mrkdwn",
-                            text: `*Status:*\n` + (status == "success") ? "Sucess :white_check_mark:" : "Fail :x:"
+                            text: `*Status:*\n ${ (status == "success") ? "Sucess :white_check_mark:" : "Fail :x:" }`
                         },
                         
                     ]
@@ -49,7 +49,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `<${core.getInput('message')}|View Commit>`
+                            text: `*Detail:*\n <${core.getInput('message')}|View Commit>`
                         }
                     ]
                 }
