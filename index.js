@@ -9,7 +9,7 @@ const slackAction = async () => {
         const status        = core.getInput('status');
         const action_url    = core.getInput('action_url');
         const serverRepoUrl = `${github.context.server_url }/${ github.context.repository}`;
-        const commitID      = `${github.event.after }`;
+        const commitID      = `${github.context.sha }`;
 
         // if (github.context.eventName === 'push') {
         //     const pushPayload = github.context.payload;
