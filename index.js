@@ -51,7 +51,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `| <${github.context.event.pull_request.html_url || github.context.event.head_commit.url}|View Commit> | <${ github.context.server_url }/${ github.context.repository }/actions/runs/${ github.context.run_id }|View Build> |`
+                            text: `| <${github.context.event.pull_request.html || github.context.event.head_commit.url}|View Commit> | <${ github.context.server_url }/${ github.context.repository }/actions/runs/${ github.context.run_id }|View Build> |`
                         }
                     ]
                 }
