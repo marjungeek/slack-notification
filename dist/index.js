@@ -15741,12 +15741,23 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(3463);
 const github = __nccwpck_require__(1405);
+
 const axios = __nccwpck_require__(5340);
 
 const slackAction = async () => {
-    
+
     try{
-        const status = core.getInput('status');
+        const status            = core.getInput('status');
+        const action_url        = core.getInput('action_url');
+        const serverUrl         = github.context.server_url;
+        const repository        = github.context.repository;
+        const commitID          = `${github.context.sha }`;
+
+        // if (github.context.eventName === 'push') {
+        //     const pushPayload = github.context.payload;
+        //     core.info(`The head commit is: ${pushPayload.head_commit}`)
+        // }
+
 
         const json = JSON.stringify({ 
             blocks: [
@@ -15767,7 +15778,7 @@ const slackAction = async () => {
                         },
                         {
                             type: "mrkdwn",
-                            text: "*Status:*\n " + (status == "success") ? "Sucess :white_check_mark:" : 0
+                            text: `*Status:*\n ${ (status == "success") ? "Success :white_check_mark:" : "Fail :x:" }`
                         },
                         
                     ]
@@ -15777,7 +15788,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Requested by:*\n${core.getInput('actor')}`
+                            text: `*Initiated by:*\n${github.context.actor}`
                         },
                         {
                             type: "mrkdwn",
@@ -15790,7 +15801,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Detail:*\n <${core.getInput('message')}|View Commit>`
+                            text: `| <${serverUrl}/${repository}/commit/${commitID}|View Commit> | <${serverUrl}/${repository}/actions/runs/${ github.context.run_id }|View Build> |`
                         }
                     ]
                 }
