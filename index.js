@@ -6,6 +6,10 @@ const slackAction = async () => {
     
     try{
         const status = core.getInput('status');
+        const github = core.getInput('github_object');
+
+        console.log("github : ", github);
+
 
         const json = JSON.stringify({ 
             blocks: [
@@ -49,7 +53,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Detail:*\n <${core.getInput('message')}|View Commit>`
+                            text: `<${core.getInput('message')}|View Commit>`
                         }
                     ]
                 }
