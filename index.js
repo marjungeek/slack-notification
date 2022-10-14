@@ -27,9 +27,19 @@ const slackAction = async () => {
                             type: "mrkdwn",
                             text: `*Status:*\n${core.getInput('status')}`
                         },
+                        
+                    ]
+                },
+                {
+                    type: "section",
+                    fields: [
                         {
                             type: "mrkdwn",
                             text: `*Requested by:*\n${core.getInput('actor')}`
+                        },
+                        {
+                            type: "mrkdwn",
+                            text: `*Release/Tag:*\n${core.getInput('release')}`
                         }
                     ]
                 },
@@ -45,7 +55,8 @@ const slackAction = async () => {
                             text: `*Release/Tag:*\n${core.getInput('release')}`
                         }
                     ]
-                }]
+                }
+            ]
         });
 
         await axios.post(core.getInput('slack_url'), json, {
