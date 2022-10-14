@@ -1,26 +1,26 @@
 name: 'Slack Alert'
 description: 'Greet someone and record the time'
 inputs:
-  slack_url:  # id of input
+  slack_url: 
     description: 'Slack URL'
     required: true
-  message:  # id of input
+  message:
     description: 'Message to be sent'
     required: true
-  actor:  # id of input
+  actor: 
     description: 'Message to be sent'
     required: true
-  environment:  # id of input
+  environment:
     description: 'Environment Release'
     required: true
-  release:  # id of input
+  release:
     description: 'Release & Tag'
     required: true
-  date:  # id of input
-    description: 'Date of the request'
+  status:  
+    description: 'Status'
     required: true
 outputs:
-  time: # id of output
+  time: 
     description: 'The time we greeted you'
 runs:
   using: 'node16'

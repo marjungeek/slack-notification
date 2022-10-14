@@ -2,18 +2,11 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios');
 
-const SLACK_URL = core.getInput('slack_url');
-const message = core.getInput('message');
-const actor = core.getInput('actor');
-const environment = core.getInput('environment');
-const release = core.getInput('release');
-const date = core.getInput('date');
-
 const slackAction = async () => {
     
     try{
         const json = JSON.stringify({ 
-            text : message,
+            text : core.getInput('message'),
             blocks: [
                 {
                     type: "header",
@@ -28,11 +21,15 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Environment:*\n${environment}`
+                            text: `*Environment:*\n${core.getInput('environment')}`
                         },
                         {
                             type: "mrkdwn",
-                            text: `*Requested by:*\n${actor}`
+                            text: `*Status:*\n${core.getInput('status')}`
+                        },
+                        {
+                            type: "mrkdwn",
+                            text: `*Requested by:*\n${core.getInput('actor')}`
                         }
                     ]
                 },
@@ -41,17 +38,17 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Date:*\n${date}`
+                            text: `*Date:*\n${core.getInput('date')}`
                         },
                         {
                             type: "mrkdwn",
-                            text: `*Release/Tag:*\n${release}`
+                            text: `*Release/Tag:*\n${core.getInput('release')}`
                         }
                     ]
                 }]
         });
 
-        await axios.post(SLACK_URL, json, {
+        await axios.post(core.getInput('slack_url'), json, {
             headers: {
                 'Content-Type': 'application/json'
             }
