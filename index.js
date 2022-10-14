@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+
 const axios = require('axios');
 
 const slackAction = async () => {
@@ -7,6 +8,11 @@ const slackAction = async () => {
     try{
         const status = core.getInput('status');
         const action_url = core.getInput('action_url');
+
+        if (github.context.eventName === 'push') {
+            const pushPayload = github.context.payload;
+            core.info(`The head commit is: ${pushPayload.head_commit}`)
+        }
 
 
         const json = JSON.stringify({ 
@@ -51,7 +57,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `| <${github.context.event.pull_request.html || github.context.event.head_commit.url}|View Commit> | <${ github.context.server_url }/${ github.context.repository }/actions/runs/${ github.context.run_id }|View Build> |`
+                            text: `| <${pushPayload.head_commit}|View Commit> | <${ github.context.server_url }/${ github.context.repository }/actions/runs/${ github.context.run_id }|View Build> |`
                         }
                     ]
                 }
