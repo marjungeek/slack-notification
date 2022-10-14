@@ -4,8 +4,8 @@ inputs:
   slack_url: 
     description: 'Slack URL'
     required: true
-  github_object: 
-    description: 'Github Object'
+  action_url: 
+    description: 'Action URL'
     required: true
   application_name: 
     description: 'Application name'

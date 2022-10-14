@@ -6,7 +6,7 @@ const slackAction = async () => {
     
     try{
         const status = core.getInput('status');
-        const github = core.getInput('github_object');
+        const action_url = core.getInput('action_url');
 
         console.log("github : ", github);
 
@@ -53,7 +53,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `<${core.getInput('message')}|View Commit>`
+                            text: `<${core.getInput('message')}|View Commit> <${action_url}|View Build>`
                         }
                     ]
                 }
