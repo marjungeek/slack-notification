@@ -51,7 +51,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: github.context.payload.actor
+                            text: github.context.actor
                         }
                     ]
                 }
