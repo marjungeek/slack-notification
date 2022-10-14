@@ -6,10 +6,11 @@ const axios = require('axios');
 const slackAction = async () => {
 
     try{
-        const status        = core.getInput('status');
-        const action_url    = core.getInput('action_url');
-        const serverRepoUrl = `${github.context.server_url }/${ github.context.repository}`;
-        const commitID      = `${github.context.sha }`;
+        const status            = core.getInput('status');
+        const action_url        = core.getInput('action_url');
+        const serverUrl         = github.context.server_url;
+        const repository        = github.context.repository;
+        const commitID          = `${github.context.sha }`;
 
         // if (github.context.eventName === 'push') {
         //     const pushPayload = github.context.payload;
@@ -59,7 +60,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `| <${serverRepoUrl}/commit/${commitID}|View Commit> | <${ serverRepoUrl }/actions/runs/${ github.context.run_id }|View Build> |`
+                            text: `| <${serverUrl}/${repository}/commit/${commitID}|View Commit> | <${serverUrl}/${repository}/actions/runs/${ github.context.run_id }|View Build> |`
                         }
                     ]
                 }
