@@ -38,7 +38,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Initiated by:*\n${core.getInput('actor')}`
+                            text: `*Initiated by:*\n${github.context.actor}`
                         },
                         {
                             type: "mrkdwn",
