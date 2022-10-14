@@ -11,7 +11,7 @@ const slackAction = async () => {
                     type: "header",
                     text: {
                         type: "plain_text",
-                        text: "New Deployment",
+                        text: core.getInput('application_name'),
                         emoji: true
                     }
                 },

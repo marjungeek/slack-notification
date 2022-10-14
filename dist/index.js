@@ -15747,13 +15747,12 @@ const slackAction = async () => {
     
     try{
         const json = JSON.stringify({ 
-            text : core.getInput('message'),
             blocks: [
                 {
                     type: "header",
                     text: {
                         type: "plain_text",
-                        text: "New Deployment",
+                        text: core.getInput('application_name'),
                         emoji: true
                     }
                 },
@@ -15768,9 +15767,19 @@ const slackAction = async () => {
                             type: "mrkdwn",
                             text: `*Status:*\n${core.getInput('status')}`
                         },
+                        
+                    ]
+                },
+                {
+                    type: "section",
+                    fields: [
                         {
                             type: "mrkdwn",
                             text: `*Requested by:*\n${core.getInput('actor')}`
+                        },
+                        {
+                            type: "mrkdwn",
+                            text: `*Release/Tag:*\n${core.getInput('release')}`
                         }
                     ]
                 },
@@ -15779,14 +15788,11 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Date:*\n${core.getInput('date')}`
-                        },
-                        {
-                            type: "mrkdwn",
-                            text: `*Release/Tag:*\n${core.getInput('release')}`
+                            text: `*Detail:*\n${core.getInput('message')}`
                         }
                     ]
-                }]
+                }
+            ]
         });
 
         await axios.post(core.getInput('slack_url'), json, {
