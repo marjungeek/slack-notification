@@ -53,7 +53,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `<${core.getInput('message')}|View Commit> <${action_url}|View Build>`
+                            text: `<${core.getInput('message')}|View Commit> | <${action_url}|View Build>`
                         }
                     ]
                 }
