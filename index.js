@@ -8,7 +8,7 @@ const slackAction = async () => {
         const status            = core.getInput('status');
         const action_url        = core.getInput('action_url');
         const serverUrl         = github.context.payload.server_url;
-        const repository        = github.context.payload.repository;
+        const repository        = JSON.stringify(github.context.payload.repository);
         const commitID          = github.context.sha;
 
         const json = JSON.stringify({ 
@@ -44,7 +44,7 @@ const slackAction = async () => {
                         },
                         {
                             type: "mrkdwn",
-                            text: `*Release/Tag:*\n${JSON.stringify(repository)}`
+                            text: `*Release/Tag:*\n${repository}`
                         }
                     ]
                 },
