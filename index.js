@@ -44,7 +44,7 @@ const slackAction = async () => {
                         },
                         {
                             type: "mrkdwn",
-                            text: repository
+                            text: `*Release/Tag:*\n${repository}`
                         }
                     ]
                 },
