@@ -6,7 +6,6 @@ const slackAction = async () => {
     
     try{
         const json = JSON.stringify({ 
-            text : core.getInput('message'),
             blocks: [
                 {
                     type: "header",
@@ -48,11 +47,7 @@ const slackAction = async () => {
                     fields: [
                         {
                             type: "mrkdwn",
-                            text: `*Date:*\n${core.getInput('date')}`
-                        },
-                        {
-                            type: "mrkdwn",
-                            text: `*Release/Tag:*\n${core.getInput('release')}`
+                            text: `*Detail:*\n${core.getInput('message')}`
                         }
                     ]
                 }
